@@ -16,8 +16,8 @@ class Upload extends React.Component {
     }
 
     onSend = async () => {
-        const recipient = this.props.fakeAuth.getPublicIdentities([this.state.recipient]);
-        const fileId = await this.props.fileKit.upload(this.state.file, { shareWithUsers: [Object.Values(recipient)] });
+        const recipient = this.props.fakeAuth.getUserPublicIdentities([this.state.recipient]);
+        const fileId = await this.props.fileKit.upload(this.state.file, { shareWithUsers: [Object.values(recipient)] });
 
         const downloadLink = 'http://localhost:3000?fileId='+encodeURIComponent(fileId)+'&email='+encodeURIComponent(this.state.recipient);
         this.setState({downloadLink});
