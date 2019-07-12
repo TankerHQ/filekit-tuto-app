@@ -27,7 +27,7 @@ class App extends React.Component {
     async componentDidMount() {
         if (this.state.email) {
             const {privateIdentity, privateProvisionalIdentity} = await this.fakeAuth.getPrivateIdentity(this.state.email);
-            await this.fileKit.start(privateIdentity, privateProvisionalIdentity)
+            await this.fileKit.start(this.state.email, privateIdentity, privateProvisionalIdentity)
         } else {
           // Create a new identity with no email attached. This will be thrown away
           const {userId, privateIdentity} = await this.fakeAuth.getPrivateIdentity();

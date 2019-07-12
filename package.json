@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@tanker/filekit": "2.0.2-alpha4",
-    "@tanker/fake-authentication": "2.0.2-alpha4",
+    "@tanker/filekit": "2.0.2-alpha7",
+    "@tanker/fake-authentication": "2.0.2-alpha7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
