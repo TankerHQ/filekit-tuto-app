@@ -3,8 +3,6 @@ import React from 'react';
 import FileKit from '@tanker/filekit';
 import FakeAuth from '@tanker/fake-authentication';
 
-import uuid from 'uuid';
-
 import Upload from './Upload'
 import Download from './Download'
 
@@ -33,8 +31,9 @@ class App extends React.Component {
         } else {
           // Create a new identity with no email attached. This will be thrown away
           const {userId, privateIdentity} = await this.fakeAuth.getPrivateIdentity();
-          console.log(userId, privateIdentity);
+          console.log("start anonymous", userId, privateIdentity);
           await this.fileKit.startWithVerificationKey(privateIdentity);
+          console.log("status", this.fileKit.tanker.statusName);
         }
 
         this.setState({ready: true});
