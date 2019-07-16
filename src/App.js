@@ -44,11 +44,17 @@ class App extends React.Component {
     }
 
     render() {
-        if (!this.state.ready)
-            return (<p>Loading...</p>);
-        if (this.state.fileId)
-            return (<Download fileKit={this.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />);
-        return (<Upload fileKit={this.fileKit} fakeAuth={this.fakeAuth}/>);
+      if (!this.state.ready)
+        return <center><p>Loading...</p></center>
+      return (
+        <center>
+          {this.state.fileId ? (
+              <Download fileKit={this.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+            ) : (
+              <Upload fileKit={this.fileKit} fakeAuth={this.fakeAuth}/>
+          )}
+        </center>
+      );
     }
 
 

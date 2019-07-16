@@ -14,12 +14,12 @@ class Download extends React.Component {
 
     render() {
         if (!this.state.downloadDone)
-            return (<div>Downloading...</div>);
+            return (<p>Downloading...</p>);
         return (
-            <div style={{display: "flex", flexFlow: "column", alignItems:"flex-start"}}>
+            <p>
                 Downloading done!
                 <button onClick={this.props.doneCb}>Exit</button>
-            </div>
+            </p>
         );
     }
 
