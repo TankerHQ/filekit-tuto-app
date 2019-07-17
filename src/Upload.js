@@ -15,7 +15,8 @@ class Upload extends React.Component {
         this.setState({recipient: event.target.value})
     }
 
-    onSend = async () => {
+    onSend = async (event) => {
+        event.preventDefault();
         const recipient = await this.props.fakeAuth.getUserPublicIdentities([this.state.recipient]);
         const fileId = await this.props.fileKit.upload(this.state.file, { shareWithUsers: Object.values(recipient) });
 
@@ -25,17 +26,23 @@ class Upload extends React.Component {
 
     render() {
         return (
-            <div style={{display: "flex", flexFlow: "column", alignItems:"flex-start"}}>
-                <label>Recipient email</label>
-                <input type="email" placeholder="Recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/>
-                <label>File to upload</label>
-                <input type="file" onChange={e => this.updateFiles(e)} />
-                {this.state.downloadLink?
-                    <div>Done! Here is the download link: <a href={this.state.downloadLink}>{this.state.downloadLink}</a></div>
-                    :
-                    <div>Upload: <button onClick={this.onSend} disabled={!this.state.file || !this.state.recipient}>Start</button></div>
-                }
-            </div>
+            <form onSubmit={this.onSend}>
+              <table border="0">
+                <tr>
+                  <td align="right"><label htmlFor="recipient-email-field">Recipient email</label></td>
+                  <td><input type="email" id="recipient-email-field" placeholder="Recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/></td>
+                </tr>
+                <tr>
+                  <td align="right"><label htmlFor="upload-field">File to upload</label></td>
+                  <td><input type="file" id="upload-field" onChange={e => this.updateFiles(e)} /></td>
+                </tr>
+                <tr>
+                  <td />
+                  <td><button type="submit">Send</button></td>
+                </tr>
+              </table>
+              {this.state.downloadLink && <p>Done! Here is the download link <a href={this.state.downloadLink}>{this.state.downloadLink}</a></p>}
+            </form>
         );
     }
 
