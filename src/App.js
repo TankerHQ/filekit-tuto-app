@@ -45,7 +45,7 @@ class App extends React.Component {
 
     render() {
       if (!this.state.ready)
-        return <center><p>Loading...</p></center>
+        return (<center><p>Loading...</p></center>);
       return (
         <center>
           {this.state.fileId ? (

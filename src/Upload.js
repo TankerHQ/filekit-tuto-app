@@ -1,9 +1,11 @@
 import React from 'react';
 
+const appUrl = 'http://localhost:3000';
+
 class Upload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {recipient: "", file: null}
+        this.state = {recipient: "", downloadLink: "", file: null}
     }
 
     updateFiles(event) {
@@ -20,7 +22,7 @@ class Upload extends React.Component {
         const recipient = await this.props.fakeAuth.getUserPublicIdentities([this.state.recipient]);
         const fileId = await this.props.fileKit.upload(this.state.file, { shareWithUsers: Object.values(recipient) });
 
-        const downloadLink = 'http://localhost:3000?fileId='+encodeURIComponent(fileId)+'&email='+encodeURIComponent(this.state.recipient);
+        const downloadLink = appUrl+'?fileId='+encodeURIComponent(fileId)+'&email='+encodeURIComponent(this.state.recipient);
         this.setState({downloadLink});
     }
 
