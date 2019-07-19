@@ -32,7 +32,7 @@ class App extends React.Component {
           // Create a new identity with no email attached. This will be thrown away
           const {userId, privateIdentity} = await this.fakeAuth.getPrivateIdentity();
           console.log("start anonymous", userId, privateIdentity);
-          await this.fileKit.startWithVerificationKey(privateIdentity);
+          await this.fileKit.startDisposableSession(privateIdentity);
           console.log("status", this.fileKit.tanker.statusName);
         }
 
