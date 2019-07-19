@@ -7,7 +7,7 @@ import Upload from './Upload'
 import Download from './Download'
 
 
-const appId = '4UY17Jl/TcvB6P1j8fgX5ZMuigcmZMfq9nRfLvzztiU=';
+const appId = 'qzORKAdxrYC/7mSeYTWsPMJkiyv1Vu61n5F/REvtUSk=';
 const url = 'https://staging-api.tanker.io';
 
 class App extends React.Component {
@@ -30,8 +30,8 @@ class App extends React.Component {
             await this.fileKit.start(this.state.email, privateIdentity, privateProvisionalIdentity)
         } else {
           // Create a new identity with no email attached. This will be thrown away
-          const {userId, privateIdentity} = await this.fakeAuth.getPrivateIdentity();
-          console.log("start anonymous", userId, privateIdentity);
+          const {privateIdentity} = await this.fakeAuth.getPrivateIdentity(this.fakeAuth.generateUserId());
+          console.log("start anonymous", privateIdentity);
           await this.fileKit.startDisposableSession(privateIdentity);
           console.log("status", this.fileKit.tanker.statusName);
         }
