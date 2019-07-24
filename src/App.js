@@ -14,25 +14,25 @@ class App extends React.Component {
     constructor(props){
         super(props);
 
-        this.fileKit = new FileKit({trustchainId: appId, url});
-        this.fakeAuth = new FakeAuth(appId, 'https://staging-fakeauth.tanker.io');
+        const fileKit = new FileKit({trustchainId: appId, url});
+        const fakeAuth = new FakeAuth(appId, 'https://staging-fakeauth.tanker.io');
 
         const urlParams = new URLSearchParams(window.location.search);
         const fileId = urlParams.get('fileId');
         const email = urlParams.get('email');
 
-        this.state = {fileId, email, ready: false};
+        this.state = {fakeAuth, fileKit, fileId, email, ready: false};
     }
 
     async componentDidMount() {
         if (this.state.email) {
-            const {privateIdentity, privateProvisionalIdentity} = await this.fakeAuth.getPrivateIdentity(this.state.email);
-            await this.fileKit.start(this.state.email, privateIdentity, privateProvisionalIdentity)
+            const {privateIdentity, privateProvisionalIdentity} = await this.state.fakeAuth.getPrivateIdentity(this.state.email);
+            await this.state.fileKit.start(this.state.email, privateIdentity, privateProvisionalIdentity)
         } else {
           // Create a new identity with no email attached. This will be thrown away
           const {privateIdentity} = await this.fakeAuth.getPrivateIdentity(this.fakeAuth.generateUserId());
           console.log("start anonymous", privateIdentity);
-          await this.fileKit.startDisposableSession(privateIdentity);
+          await this.state.fileKit.startDisposableSession(privateIdentity);
           console.log("status", this.fileKit.tanker.statusName);
         }
 
@@ -49,9 +49,9 @@ class App extends React.Component {
       return (
         <center>
           {this.state.fileId ? (
-              <Download fileKit={this.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+              <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
             ) : (
-              <Upload fileKit={this.fileKit} fakeAuth={this.fakeAuth}/>
+              <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth}/>
           )}
         </center>
       );
