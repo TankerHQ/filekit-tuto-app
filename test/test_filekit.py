@@ -26,18 +26,26 @@ class FileTransferClient:
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-extensions")
             options.add_argument("--disable-translate")
+        else:
+            options.add_experimental_option("prefs", {
+                "download.default_directory": download_dir,
+            })
         self.driver = selenium.webdriver.Chrome(options=options)
-        self.driver.get(self.base_url)
+        self.to_home_page()
         # https://bugs.chromium.org/p/chromium/issues/detail?id=696481#c86
-        self.driver.command_executor._commands["send_command"] = (
-            "POST",
-            '/session/$sessionId/chromium/send_command',
-        )
-        params = {
-            'cmd': 'Page.setDownloadBehavior',
-            'params': {'behavior': 'allow', 'downloadPath': download_dir}
-        }
-        self.driver.execute("send_command", params)
+        if headless:
+            self.driver.command_executor._commands["send_command"] = (
+                "POST",
+                '/session/$sessionId/chromium/send_command',
+            )
+            params = {
+                'cmd': 'Page.setDownloadBehavior',
+                'params': {'behavior': 'allow', 'downloadPath': download_dir}
+            }
+            self.driver.execute("send_command", params)
+
+    def to_home_page(self):
+        self.driver.get(self.base_url)
 
     def wait_for_element(self, element_id, timeout=DEFAULT_TIMEOUT):
         driver_wait = WebDriverWait(self.driver, timeout)
@@ -140,6 +148,48 @@ def test_upload_download(tmpdir, admin):
     verification_code = admin.get_verification_code(TRUSTCHAIN_ID, email)
     client.type_verification_code(verification_code)
     client.exit_verification()
+    client.exit_download()
+
+    assert downloaded_file_path.exists()
+    assert downloaded_file_path.text() == random_text
+
+
+def test_share_to_user_twice(tmpdir, admin):
+    faker = Faker()
+    email = faker.email()
+    file_name = "test.txt"
+    tmp_path = Path(tmpdir)
+    file_path = tmp_path / file_name
+    random_text = str(random.randrange(2 ** 16))
+    file_path.write_text(random_text)
+    download_dir = Path(tmpdir) / "Downloads"
+    download_dir.mkdir()
+    downloaded_file_path = download_dir / file_name
+
+    client = FileTransferClient(download_dir=download_dir)
+    client.set_email(email)
+    client.set_file(file_path)
+    client.upload()
+    link = client.get_download_link()
+    client.driver.get(link)
+    assert client.verification_field
+    verification_code = admin.get_verification_code(TRUSTCHAIN_ID, email)
+    client.type_verification_code(verification_code)
+    client.exit_verification()
+    client.exit_download()
+
+    assert downloaded_file_path.exists()
+    assert downloaded_file_path.text() == random_text
+
+    downloaded_file_path.remove()
+
+    client.to_home_page()
+    client.set_email(email)
+    client.set_file(file_path)
+    client.upload()
+    link = client.get_download_link()
+    client.driver.get(link)
+    # no need to verify identity here
     client.exit_download()
 
     assert downloaded_file_path.exists()
