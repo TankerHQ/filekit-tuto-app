@@ -21,7 +21,10 @@ class FileTransferClient:
     def __init__(self):
         self.base_url = "http://127.0.0.1:3000"
         options = ChromeOptions()
-        options.headless = False
+        options.headless = True
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-translate")
         options.add_argument("window-size=1200x600")
         self.driver = selenium.webdriver.Chrome(options=options)
         self.driver.get(self.base_url)

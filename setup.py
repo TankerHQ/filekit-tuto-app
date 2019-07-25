@@ -3,6 +3,7 @@ from setuptools import setup
 setup(
     name="tanker-filetransfer",
     extras_require={"dev": [
+        "ci",
         "faker",
         "path-py",
         "pytest",
