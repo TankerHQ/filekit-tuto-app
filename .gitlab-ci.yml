@@ -1,0 +1,9 @@
+stages:
+  - check
+
+check:
+  stage: check
+  script:
+    - dmenv install
+    - dmenv run -- python run-ci.py
+  tags: [linux]

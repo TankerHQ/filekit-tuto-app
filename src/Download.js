@@ -4,22 +4,23 @@ class Download extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {downloadDone: false}
+        this.state = { downloadDone: false };
     }
 
     async componentDidMount() {
-        await this.props.fileKit.download(this.props.fileId);
-        this.setState({downloadDone: true})
+        await this.props.fileKit.downloadToDisk(this.props.fileId);
+        this.setState({ downloadDone: true });
     }
 
     render() {
         if (!this.state.downloadDone)
-            return (<p>Downloading...</p>);
+            return <center>Downloading...</center>;
+
         return (
-            <p>
+            <center>
                 Downloading done!
-                <button onClick={this.props.doneCb}>Exit</button>
-            </p>
+                <button onClick={this.props.doneCb} id="exit-button">Exit</button>
+            </center>
         );
     }
 
