@@ -18,16 +18,26 @@ TRUSTCHAIN_ID = "VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw="
 
 class FileTransferClient:
 
-    def __init__(self):
+    def __init__(self, *, download_dir=None, headless=True):
         self.base_url = "http://127.0.0.1:3000"
         options = ChromeOptions()
-        options.headless = True
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-extensions")
-        options.add_argument("--disable-translate")
-        options.add_argument("window-size=1200x600")
+        options.headless = headless
+        if headless:
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-extensions")
+            options.add_argument("--disable-translate")
         self.driver = selenium.webdriver.Chrome(options=options)
         self.driver.get(self.base_url)
+        # https://bugs.chromium.org/p/chromium/issues/detail?id=696481#c86
+        self.driver.command_executor._commands["send_command"] = (
+            "POST",
+            '/session/$sessionId/chromium/send_command',
+        )
+        params = {
+            'cmd': 'Page.setDownloadBehavior',
+            'params': {'behavior': 'allow', 'downloadPath': download_dir}
+        }
+        self.driver.execute("send_command", params)
 
     def wait_for_element(self, element_id, timeout=DEFAULT_TIMEOUT):
         driver_wait = WebDriverWait(self.driver, timeout)
@@ -112,13 +122,15 @@ def test_upload_download(tmpdir, admin):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
-    file_path = Path(tmpdir) / file_name
+    tmp_path = Path(tmpdir)
+    file_path = tmp_path / file_name
     random_text = str(random.randrange(2 ** 16))
     file_path.write_text(random_text)
-    downloaded_file_path = Path("~").expanduser() / "Downloads" / file_name
-    downloaded_file_path.remove_p()
+    download_dir = Path(tmpdir) / "Downloads"
+    download_dir.mkdir()
+    downloaded_file_path = download_dir / file_name
 
-    client = FileTransferClient()
+    client = FileTransferClient(download_dir=download_dir)
     client.set_email(email)
     client.set_file(file_path)
     client.upload()
