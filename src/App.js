@@ -48,13 +48,16 @@ class App extends React.Component {
       return <center><p>Loading...</p></center>;
 
     return (
-      <center>
-        {this.state.fileId ? (
-          <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
-        ) : (
-          <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
-        )}
-      </center>
+      <div id="app">
+        <h1>FileKit Tutorial Application</h1>
+        <center>
+          {this.state.fileId ? (
+            <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+          ) : (
+            <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
+          )}
+        </center>
+      </div>
     );
   }
 }
