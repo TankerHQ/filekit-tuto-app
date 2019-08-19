@@ -34,6 +34,9 @@ class Upload extends React.Component {
   }
 
   render() {
+    const { file, recipient } = this.state;
+    const uploadReady = (file != null) && (recipient != "");
+    console.log('uploadReady', uploadReady);
     return (
       <form onSubmit={this.onSend}>
         <center>
@@ -48,7 +51,7 @@ class Upload extends React.Component {
             </tr>
             <tr>
               <td />
-              <td><button type="submit" id="send-button">Send</button></td>
+              <td><button type="submit" id="send-button" disabled={!uploadReady}>Send</button></td>
             </tr>
           </tbody></table>
           {this.state.downloadLink && (
