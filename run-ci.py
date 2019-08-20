@@ -7,6 +7,9 @@ from path import Path
 import ci
 import ci.dmenv
 import ci.tanker_configs
+import ci.git
+
+GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
 
 
 def check():
@@ -32,8 +35,9 @@ def deploy():
 
     commit_sha = os.environ["CI_COMMIT_SHA"]
     message = f"Deploy {commit_sha}"
+    # Ensure 'github' remote exists
     ci.run("git", "remote", "remove", "github", check=False)
-    ci.run("git", "remote", "add", "github", "git@github.com:TankerHQ/filekit-tuto-app")
+    ci.run("git", "remote", "add", "github", GITHUB_URL)
     # fmt: off
     ci.run(
         "ghp-import",
@@ -44,6 +48,8 @@ def deploy():
         "build/",
     )
     # fmt:on
+
+    ci.git.mirror(github_url=GITHUB_URL)
 
 
 def main():
