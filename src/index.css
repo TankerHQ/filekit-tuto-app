@@ -25,3 +25,13 @@ h1, h2, h3 {
     line-height: 1.2;
     text-align: center;
 }
+
+#demo-warning {
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+footer {
+  font-style: italic;
+}

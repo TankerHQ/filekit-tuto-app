@@ -36,8 +36,8 @@ class Upload extends React.Component {
     const { file, recipient, downloadLink } = this.state;
     const uploadReady = file && (recipient !== "");
     return (
+      <div>
       <form onSubmit={this.onSend}>
-        <center>
           <table border="0"><tbody>
             <tr>
               <td align="right"><label htmlFor="recipient-email-field">Recipient email</label></td>
@@ -52,12 +52,15 @@ class Upload extends React.Component {
               <td><button type="submit" id="send-button" disabled={!uploadReady}>Send</button></td>
             </tr>
           </tbody></table>
-          {this.state.downloadLink && (
-            <p id="download-link">Done! Here is the download link: {this.state.downloadLink}</p>
-          )}
-        </center>
       </form>
-    );
+      {downloadLink && (
+        <p id="download-link">Done! You can now send this link: <br />
+        <a href={downloadLink}>{downloadLink}</a> <br />
+        to <strong>{recipient}</strong>
+        </p>
+      )}
+      </div>
+);
   }
 }
 

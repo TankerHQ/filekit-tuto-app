@@ -48,6 +48,9 @@ class App extends React.Component {
     return (
       <div id="app">
         <h1>FileKit Tutorial Application</h1>
+        <p id="demo-warning">
+           Warning: this is not a production application, we make no guarantee about stored data. Useful for demonstration purposes only.
+        </p>
         <center>
           {this.state.fileId ? (
             <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
@@ -55,6 +58,9 @@ class App extends React.Component {
             <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
           )}
         </center>
+        <footer>
+           Want to build your own file transfer application? Follow the <a href="https://docs.tanker.io/filekit/latest">FileKit Tutorial</a> to get started.
+        </footer>
       </div>
     );
   }
