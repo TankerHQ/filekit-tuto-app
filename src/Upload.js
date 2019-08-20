@@ -54,8 +54,8 @@ class Upload extends React.Component {
           </tbody></table>
       </form>
       {downloadLink && (
-        <p id="download-link">Done! You can now send this link: <br />
-        <a href={downloadLink}>{downloadLink}</a> <br />
+        <p >Done! You can now send this link: <br />
+        <a id="download-link" href={downloadLink}>{downloadLink}</a> <br />
         to <strong>{recipient}</strong>
         </p>
       )}

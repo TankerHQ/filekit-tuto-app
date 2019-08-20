@@ -105,10 +105,7 @@ class FileTransferClient:
         self.upload_button.click()
 
     def get_download_link(self):
-        download_link_text = self.download_link.text
-        regex = r".+(?P<url>http://127.0.0.1:3000\?fileId=.+email=.+)"
-        res = re.match(regex, download_link_text)
-        return res["url"]
+        return self.download_link.get_attribute("href")
 
     def type_verification_code(self, verification_code):
         self.type_text(self.verification_field, verification_code)
