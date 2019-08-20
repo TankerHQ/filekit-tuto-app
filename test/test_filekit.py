@@ -27,20 +27,20 @@ class FileTransferClient:
             options.add_argument("--disable-extensions")
             options.add_argument("--disable-translate")
         else:
-            options.add_experimental_option("prefs", {
-                "download.default_directory": download_dir,
-            })
+            options.add_experimental_option(
+                "prefs", {"download.default_directory": download_dir}
+            )
         self.driver = selenium.webdriver.Chrome(options=options)
         self.to_home_page()
         # https://bugs.chromium.org/p/chromium/issues/detail?id=696481#c86
         if headless:
             self.driver.command_executor._commands["send_command"] = (
                 "POST",
-                '/session/$sessionId/chromium/send_command',
+                "/session/$sessionId/chromium/send_command",
             )
             params = {
-                'cmd': 'Page.setDownloadBehavior',
-                'params': {'behavior': 'allow', 'downloadPath': download_dir}
+                "cmd": "Page.setDownloadBehavior",
+                "params": {"behavior": "allow", "downloadPath": download_dir},
             }
             self.driver.execute("send_command", params)
 
