@@ -1,9 +1,20 @@
 stages:
   - check
+  - deploy
 
 check:
   stage: check
   script:
     - dmenv install
-    - dmenv run -- python run-ci.py
+    - dmenv run -- python run-ci.py check
+  tags: [linux]
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - dmenv install
+    - source $(dmenv show:bin_path)/activate
+    - python run-ci.py deploy
   tags: [linux]
