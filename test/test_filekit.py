@@ -11,13 +11,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from tankersdk import Admin
 
+APP_ID = "VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw="
 
 DEFAULT_TIMEOUT = 30
-TRUSTCHAIN_ID = "VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw="
 
 
 class FileTransferClient:
-
     def __init__(self, *, download_dir=None, headless=True):
         self.base_url = "http://127.0.0.1:3000"
         options = ChromeOptions()
@@ -126,7 +125,7 @@ def admin():
     return Admin(url=os.environ["TANKER_API_URL"], token=os.environ["TANKER_TOKEN"])
 
 
-def test_upload_download(tmpdir, admin):
+def test_upload_download(tmpdir, admin, request):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
@@ -138,14 +137,16 @@ def test_upload_download(tmpdir, admin):
     download_dir.mkdir()
     downloaded_file_path = download_dir / file_name
 
-    client = FileTransferClient(download_dir=download_dir)
+    client = FileTransferClient(
+        download_dir=download_dir, headless=request.config.getoption("headless")
+    )
     client.set_email(email)
     client.set_file(file_path)
     client.upload()
     link = client.get_download_link()
     client.driver.get(link)
     assert client.verification_field
-    verification_code = admin.get_verification_code(TRUSTCHAIN_ID, email)
+    verification_code = admin.get_verification_code(APP_ID, email)
     client.type_verification_code(verification_code)
     client.exit_verification()
     client.exit_download()
@@ -154,7 +155,7 @@ def test_upload_download(tmpdir, admin):
     assert downloaded_file_path.text() == random_text
 
 
-def test_share_to_user_twice(tmpdir, admin):
+def test_share_to_user_twice(tmpdir, admin, request):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
@@ -166,14 +167,16 @@ def test_share_to_user_twice(tmpdir, admin):
     download_dir.mkdir()
     downloaded_file_path = download_dir / file_name
 
-    client = FileTransferClient(download_dir=download_dir)
+    client = FileTransferClient(
+        download_dir=download_dir, headless=request.config.getoption("headless")
+    )
     client.set_email(email)
     client.set_file(file_path)
     client.upload()
     link = client.get_download_link()
     client.driver.get(link)
     assert client.verification_field
-    verification_code = admin.get_verification_code(TRUSTCHAIN_ID, email)
+    verification_code = admin.get_verification_code(APP_ID, email)
     client.type_verification_code(verification_code)
     client.exit_verification()
     client.exit_download()
