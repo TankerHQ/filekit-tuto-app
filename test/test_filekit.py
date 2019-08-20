@@ -123,7 +123,7 @@ class FileTransferClient:
 
 @pytest.fixture
 def admin():
-    return Admin(url=os.environ["TANKER_URL"], token=os.environ["TANKER_TOKEN"])
+    return Admin(url=os.environ["TANKER_API_URL"], token=os.environ["TANKER_TOKEN"])
 
 
 def test_upload_download(tmpdir, admin):

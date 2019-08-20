@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const appUrl = "http://127.0.0.1:3000";
+import config from './config';
 
 class Upload extends React.Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class Upload extends React.Component {
     const recipientPublicIdentities = await fakeAuth.getPublicIdentities([ recipient ]);
     const fileId = await fileKit.upload(file, { shareWithUsers: recipientPublicIdentities });
 
-    const downloadLink = appUrl +
+    const downloadLink = config.appUrl +
       '?fileId=' +
       encodeURIComponent(fileId) +
       '&email=' +
@@ -34,9 +33,8 @@ class Upload extends React.Component {
   }
 
   render() {
-    const { file, recipient } = this.state;
-    const uploadReady = (file != null) && (recipient != "");
-    console.log('uploadReady', uploadReady);
+    const { file, recipient, downloadLink } = this.state;
+    const uploadReady = file && (recipient !== "");
     return (
       <form onSubmit={this.onSend}>
         <center>

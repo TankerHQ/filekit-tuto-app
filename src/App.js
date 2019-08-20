@@ -5,16 +5,16 @@ import FakeAuthentication from '@tanker/fake-authentication';
 
 import Upload from './Upload';
 import Download from './Download';
+import config from './config';
 
-
-const appId = 'VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw=';
 
 class App extends React.Component {
   constructor(props){
     super(props);
 
-    const fileKit = new FileKit({ appId, url: 'https://dev-api.tanker.io' });
-    const fakeAuth = new FakeAuthentication({ appId, url: 'https://dev-fakeauth.tanker.io' });
+    const { appId, tankerApiUrl, fakeAuthApiUrl } = config;
+    const fileKit = new FileKit({ appId, url: tankerApiUrl });
+    const fakeAuth = new FakeAuthentication({ appId, url: fakeAuthApiUrl });
 
     const urlParams = new URLSearchParams(window.location.search);
     const fileId = urlParams.get('fileId');
