@@ -17,7 +17,7 @@ class Download extends React.Component {
 
     return (
       <center>
-        Downloading done!
+        Downloading done! <br />
         <button onClick={this.props.doneCb} id="exit-button">Exit</button>
       </center>
     );
