@@ -16,7 +16,7 @@ APP_ID = "VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw="
 DEFAULT_TIMEOUT = 30
 
 
-class FileTransferClient:
+class WebClient:
     def __init__(self, *, download_dir=None, headless=True):
         self.base_url = "http://127.0.0.1:3000"
         options = ChromeOptions()
@@ -116,29 +116,42 @@ class FileTransferClient:
     def exit_download(self):
         self.exit_button.click()
 
+    def quit(self):
+        self.driver.quit()
+
 
 @pytest.fixture
 def admin():
     return Admin(url=os.environ["TANKER_API_URL"], token=os.environ["TANKER_TOKEN"])
 
 
-def test_upload_download(tmpdir, admin, request):
+@pytest.fixture
+def download_dir(tmpdir):
+    tmp_path = Path(tmpdir)
+    return tmp_path / "downloads"
+
+
+@pytest.fixture
+def client(request, download_dir):
+    download_dir.makedirs_p()
+    client = WebClient(
+        download_dir=download_dir, headless=request.config.getoption("headless")
+    )
+    yield client
+    client.quit()
+
+
+def test_upload_download(tmp_path, download_dir, admin, client):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
-    tmp_path = Path(tmpdir)
     file_path = tmp_path / file_name
     random_text = str(random.randrange(2 ** 16))
     file_path.write_text(random_text)
-    download_dir = Path(tmpdir) / "Downloads"
-    download_dir.mkdir()
     downloaded_file_path = download_dir / file_name
 
-    client = FileTransferClient(
-        download_dir=download_dir, headless=request.config.getoption("headless")
-    )
     client.set_email(email)
-    client.set_file(file_path)
+    client.set_file(str(file_path))
     client.upload()
     link = client.get_download_link()
     client.driver.get(link)
@@ -152,7 +165,7 @@ def test_upload_download(tmpdir, admin, request):
     assert downloaded_file_path.text() == random_text
 
 
-def test_share_to_user_twice(tmpdir, admin, request):
+def test_share_to_user_twice(tmpdir, download_dir, admin, client):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
@@ -160,13 +173,8 @@ def test_share_to_user_twice(tmpdir, admin, request):
     file_path = tmp_path / file_name
     random_text = str(random.randrange(2 ** 16))
     file_path.write_text(random_text)
-    download_dir = Path(tmpdir) / "Downloads"
-    download_dir.mkdir()
     downloaded_file_path = download_dir / file_name
 
-    client = FileTransferClient(
-        download_dir=download_dir, headless=request.config.getoption("headless")
-    )
     client.set_email(email)
     client.set_file(file_path)
     client.upload()
