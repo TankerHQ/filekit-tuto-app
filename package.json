@@ -1,6 +1,7 @@
 {
   "name": "tanker-filekit-tuto",
   "version": "0.1.0",
+  "license": "Apache-2.0",
   "repository": "git@github.com:TankerHQ/filekit-tuto-app",
   "dependencies": {
     "@tanker/fake-authentication": "2.1.3",
