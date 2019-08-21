@@ -1,7 +1,7 @@
 {
   "name": "tanker-filekit-tuto",
   "version": "0.1.0",
-  "repo": "git@github.com:TankerHQ/filekit-tuto-app",
+  "repository": "git@github.com:TankerHQ/filekit-tuto-app",
   "dependencies": {
     "@tanker/fake-authentication": "2.1.3",
     "@tanker/filekit": "2.1.3",
