@@ -49,7 +49,7 @@ class App extends React.Component {
       <div id="app">
         <h1>FileKit Tutorial Application</h1>
         <p id="demo-warning">
-           Warning: this is not a production application, we make no guarantee about stored data. Useful for demonstration purposes only.
+           Warning: this is not a production application, we do not provide any guarantee about stored data. Use it for demonstration purposes only.
         </p>
         <center>
           {this.state.fileId ? (
