@@ -5,7 +5,7 @@ import config from './config';
 class Upload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { recipient: "", downloadLink: "", file: null }
+    this.state = { recipient: "", downloadLink: "", file: null, isUploading: false }
   }
 
   updateFiles(event) {
@@ -17,12 +17,14 @@ class Upload extends React.Component {
     this.setState({ recipient: event.target.value });
   }
 
-  onSend = async (event) => {
+  onUpload = async (event) => {
     event.preventDefault();
     const { fakeAuth, fileKit } = this.props;
     const { file, recipient } = this.state;
     const recipientPublicIdentities = await fakeAuth.getPublicIdentities([ recipient ]);
+    this.setState({ isUploading: true });
     const fileId = await fileKit.upload(file, { shareWithUsers: recipientPublicIdentities });
+    this.setState({ isUploading: false });
 
     const downloadLink = config.appUrl +
       '?fileId=' +
@@ -33,34 +35,30 @@ class Upload extends React.Component {
   }
 
   render() {
-    const { file, recipient, downloadLink } = this.state;
+    const { file, recipient, downloadLink, isUploading } = this.state;
     const uploadReady = file && (recipient !== "");
+
+    if (downloadLink) {
+      return (
+        <>
+          <h1>Done!</h1>
+          <p>You can now send this link to <b>{recipient}</b></p>
+          <a id="download-link" href={downloadLink}>{downloadLink}</a>
+        </>
+      );
+    }
+
     return (
-      <div>
-      <form onSubmit={this.onSend}>
-          <table border="0"><tbody>
-            <tr>
-              <td align="right"><label htmlFor="recipient-email-field">Recipient email</label></td>
-              <td><input type="email" id="recipient-email-field" placeholder="Recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/></td>
-            </tr>
-            <tr>
-              <td align="right"><label htmlFor="upload-field">File to upload</label></td>
-              <td><input type="file" id="upload-field" onChange={e => this.updateFiles(e)} /></td>
-            </tr>
-            <tr>
-              <td />
-              <td><button type="submit" id="send-button" disabled={!uploadReady}>Send</button></td>
-            </tr>
-          </tbody></table>
+      <form onSubmit={this.onUpload}>
+        <h1>FileKit tutorial app</h1>
+        <div>
+          <input type="file" id="upload-field" required onChange={e => this.updateFiles(e)} />
+          <label htmlFor="upload-field">{file ? file.name : 'No file chosen'}</label>
+        </div>
+        <input type="email" id="recipient-email-field" required placeholder="Recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/>
+        <button type="submit" id="send-button" disabled={isUploading || !uploadReady}>{isUploading ? 'Uploading...' : 'Upload'}</button>
       </form>
-      {downloadLink && (
-        <p >Done! You can now send this link: <br />
-        <a id="download-link" href={downloadLink}>{downloadLink}</a> <br />
-        to <strong>{recipient}</strong>
-        </p>
-      )}
-      </div>
-);
+    );
   }
 }
 
