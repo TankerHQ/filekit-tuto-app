@@ -55,7 +55,7 @@ class App extends React.Component {
           )}
         </section>
         <footer>
-          This app was built using FileKit. Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your own.
+          This app uses FileKit to encrypt and store files. Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your own.
         </footer>
       </>
     );
