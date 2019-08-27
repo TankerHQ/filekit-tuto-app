@@ -1,6 +1,5 @@
 import os
 import random
-import re
 
 from faker import Faker
 from path import Path
@@ -73,7 +72,10 @@ class WebClient:
 
     @property
     def file_field(self):
-        return self.wait_for_element("upload-field")
+        file_id = "upload-field"
+        self.driver.execute_script(
+            f"document.getElementById('{file_id}').style.display='block';")
+        return self.wait_for_element(file_id)
 
     @property
     def upload_button(self):

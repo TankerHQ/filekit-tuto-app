@@ -23,7 +23,7 @@ def check():
     ci.run("yarn")
     with ci.run_in_background("yarn", "start"):
         ci.dmenv.run(
-            "pytest", "--verbose", "--capture=no", "--headless", "--headless", env=env
+            "pytest", "--verbose", "--capture=no", "--headless", env=env
         )
 
 
