@@ -43,7 +43,7 @@ class Upload extends React.Component {
         <>
           <h1>Done!</h1>
           <p>You can now send this link to <b>{recipient}</b></p>
-          <a id="download-link" href={downloadLink}>{downloadLink}</a>
+          <p id="download-link" href={downloadLink}>{downloadLink}</p>
         </>
       );
     }
