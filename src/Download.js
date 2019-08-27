@@ -13,13 +13,13 @@ class Download extends React.Component {
 
   render() {
     if (!this.state.downloadDone)
-      return <center>Downloading...</center>;
+      return 'Downloading file...';
 
     return (
-      <center>
-        Downloading done! <br />
-        <button onClick={this.props.doneCb} id="exit-button">Exit</button>
-      </center>
+      <>
+        <p>Download complete!</p>
+        <button onClick={this.props.doneCb} id="exit-button">Upload a new file</button>
+      </>
     );
   }
 }

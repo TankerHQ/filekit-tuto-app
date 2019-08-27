@@ -7,7 +7,6 @@ import Upload from './Upload';
 import Download from './Download';
 import config from './config';
 
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -42,26 +41,23 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.ready)
-      return <center><p>Loading...</p></center>;
-
     return (
-      <div id="app">
-        <h1>FileKit Tutorial Application</h1>
-        <p id="demo-warning">
-           Warning: this is not a production application, we do not provide any guarantee about stored data. Use it for demonstration purposes only.
-        </p>
-        <center>
-          {this.state.fileId ? (
-            <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+      <>
+        <section>
+          {!this.state.ready ? (
+            <p>Loading...</p>
           ) : (
-            <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
+            this.state.fileId ? (
+              <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+            ) : (
+              <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
+            )
           )}
-        </center>
+        </section>
         <footer>
-           Want to build your own file transfer application? Follow the <a href="https://docs.tanker.io/filekit/latest">FileKit Tutorial</a> to get started.
+          This app was built using FileKit. Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your own.
         </footer>
-      </div>
+      </>
     );
   }
 }
