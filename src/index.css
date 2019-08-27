@@ -120,11 +120,12 @@ body {
 
 #root p { text-align: center; }
 
-#root section a {
+#download-link {
   padding: 5px 10px;
   border-radius: 6px;
   background-color: #f9f9ff;
   border: 1px solid #ccf;
+  text-align: left;
   word-break: break-all;
 }
 
