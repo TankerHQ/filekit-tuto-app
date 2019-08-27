@@ -50,13 +50,13 @@ class Upload extends React.Component {
 
     return (
       <form onSubmit={this.onUpload}>
-        <h1>FileKit tutorial app</h1>
+        <h1>End-to-end encrypted file transfer</h1>
         <div>
           <input type="file" id="upload-field" required onChange={e => this.updateFiles(e)} />
-          <label htmlFor="upload-field">{file ? file.name : 'No file chosen'}</label>
+          <label htmlFor="upload-field">{file ? file.name : 'Select a file to send'}</label>
         </div>
-        <input type="email" id="recipient-email-field" required placeholder="Recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/>
-        <button type="submit" id="send-button" disabled={isUploading || !uploadReady}>{isUploading ? 'Uploading...' : 'Upload'}</button>
+        <input type="email" id="recipient-email-field" required placeholder="Enter the recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/>
+        <button type="submit" id="send-button" disabled={isUploading || !uploadReady}>{isUploading ? 'Uploading...' : 'Create a secure link'}</button>
       </form>
     );
   }

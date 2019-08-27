@@ -43,6 +43,10 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <header>
+          This app uses FileKit to encrypt and store files.<br/>
+          Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your app.
+        </header>
         <section>
           {!this.state.ready ? (
             <p>Loading...</p>
@@ -54,9 +58,6 @@ class App extends React.Component {
             )
           )}
         </section>
-        <footer>
-          This app uses FileKit to encrypt and store files. Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your own.
-        </footer>
       </>
     );
   }

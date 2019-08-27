@@ -29,6 +29,8 @@ body {
   justify-content: center;
 }
 
+#root > *:not(:last-child) { margin: 0 0 30px; }
+
 #root section {
   display: flex;
   flex-flow: column;
@@ -36,7 +38,6 @@ body {
   justify-content: center;
   width: 400px;
   height: 355px;
-  margin: 0 0 30px;
   padding: 65px 60px;
   background-color: #fff;
   border-radius: 6px;
@@ -129,7 +130,7 @@ body {
   word-break: break-all;
 }
 
-#root footer {
-  max-width: 240px;
-  font-size: 14px;
+#root header {
+  font-size: 18px;
+  text-align: center;
 }
