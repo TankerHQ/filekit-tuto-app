@@ -29,11 +29,11 @@ class App extends React.Component {
   async componentDidMount() {
     const { email } = this.state;
     if (email) {
-      const privateIdentity = await this.state.fakeAuth.getPrivateIdentity(email);
+      const privateIdentity = await this.state.fakeAuth.getIdentity(email);
       await this.state.fileKit.start(email, privateIdentity);
     } else {
       // Create a new identity with no email attached. This will be thrown away
-      const privateIdentity = await this.state.fakeAuth.getPrivateIdentity();
+      const privateIdentity = await this.state.fakeAuth.getIdentity();
       await this.state.fileKit.startDisposableSession(privateIdentity);
     }
 
