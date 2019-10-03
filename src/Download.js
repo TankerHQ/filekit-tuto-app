@@ -3,11 +3,13 @@ import React from 'react';
 class Download extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = { downloadDone: false };
   }
 
   async componentDidMount() {
-    await this.props.fileKit.downloadToDisk(this.props.fileId);
+    const { fileId, fileKit } = this.props;
+    await fileKit.downloadToDisk(fileId);
     this.setState({ downloadDone: true });
   }
 
