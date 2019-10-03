@@ -39,9 +39,9 @@ Install all dependencies at once:
 yarn
 ```
 
-Configure the project for production
+Configure the project for &lt;env&gt; (local, dev, or prod)
 ```bash
-cp src/config.prod.js src/config.js
+cd src/ && ln -s config.<env>.js config.js
 ```
 
 Run the application
