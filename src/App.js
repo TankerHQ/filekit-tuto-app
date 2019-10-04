@@ -3,8 +3,9 @@ import React from 'react';
 import FileKit from '@tanker/filekit';
 import FakeAuthentication from '@tanker/fake-authentication';
 
-import Upload from './Upload';
 import Download from './Download';
+import Upload from './Upload';
+
 import config from './config';
 
 class App extends React.Component {
@@ -22,17 +23,14 @@ class App extends React.Component {
     this.state = { fakeAuth, fileKit, fileId, email, ready: false };
   }
 
-  downloadDone = () => {
-    this.setState({ fileId: null });
-  }
-
   async componentDidMount() {
     const { email } = this.state;
+
     if (email) {
       const privateIdentity = await this.state.fakeAuth.getIdentity(email);
       await this.state.fileKit.start(email, privateIdentity);
+      await this.state.fakeAuth.setIdentityRegistered(email);
     } else {
-      // Create a new identity with no email attached. This will be thrown away
       const privateIdentity = await this.state.fakeAuth.getIdentity();
       await this.state.fileKit.startDisposableSession(privateIdentity);
     }
@@ -40,7 +38,13 @@ class App extends React.Component {
     this.setState({ ready: true });
   }
 
+  downloadDone = () => {
+    this.setState({ fileId: null });
+  }
+
   render() {
+    const { fileId, ready } = this.state;
+
     return (
       <>
         <header>
@@ -48,11 +52,11 @@ class App extends React.Component {
           Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your app.
         </header>
         <section>
-          {!this.state.ready ? (
+          {!ready ? (
             <p>Loading...</p>
           ) : (
-            this.state.fileId ? (
-              <Download fileKit={this.state.fileKit} fileId={this.state.fileId} doneCb={this.downloadDone} />
+            fileId ? (
+              <Download fileKit={this.state.fileKit} fileId={fileId} doneCb={this.downloadDone} />
             ) : (
               <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
             )

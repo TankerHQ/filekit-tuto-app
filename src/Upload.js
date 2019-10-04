@@ -27,10 +27,9 @@ class Upload extends React.Component {
     this.setState({ isUploading: false });
 
     const downloadLink = config.appUrl +
-      '?fileId=' +
-      encodeURIComponent(fileId) +
-      '&email=' +
-      encodeURIComponent(recipient);
+      '?fileId=' + encodeURIComponent(fileId) +
+      '&email=' + encodeURIComponent(recipient);
+
     this.setState({ downloadLink });
   }
 
