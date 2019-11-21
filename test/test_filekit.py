@@ -10,7 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from tankersdk import Admin
 
-APP_ID = "VoP7W4UypIz1/v9uouNYeWlcRizRPyqMkTnMtUs/dFw="
+APP_ID = "TqegH/6vb8hC4g9p9pgMmjdpcKxx12Y+KrC7xX7PQ1A="
 
 DEFAULT_TIMEOUT = 30
 
