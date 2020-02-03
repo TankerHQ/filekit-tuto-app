@@ -5,7 +5,6 @@ import sys
 from path import Path
 
 import ci
-import ci.dmenv
 import ci.tanker_configs
 import ci.git
 
@@ -22,9 +21,15 @@ def check():
 
     ci.run("yarn")
     with ci.run_in_background("yarn", "start"):
-        ci.dmenv.run(
-            "pytest", "--verbose", "--capture=no", "--headless", env=env
+        # fmt: off
+        ci.run(
+            "poetry", "run", "pytest",
+            "--verbose",
+            "--capture=no",
+            "--headless",
+            env=env,
         )
+        # fmt: on
 
 
 def deploy():
