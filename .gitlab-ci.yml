@@ -5,8 +5,8 @@ stages:
 check:
   stage: check
   script:
-    - dmenv install
-    - dmenv run -- python run-ci.py check
+    - poetry install
+    - poetry run python run-ci.py check
   tags: [linux]
 
 deploy:
@@ -14,7 +14,6 @@ deploy:
   only:
     - master
   script:
-    - dmenv install
-    - source $(dmenv show:bin_path)/activate
-    - python run-ci.py deploy
+    - poetry install
+    - poetry run python run-ci.py deploy
   tags: [linux]
