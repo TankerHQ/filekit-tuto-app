@@ -50,6 +50,7 @@ def deploy():
         "--remote", "github",
         "--push",
         "--force",
+        "--no-jekyll",
         "build/",
     )
     # fmt:on
