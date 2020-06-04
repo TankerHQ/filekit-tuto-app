@@ -3,7 +3,7 @@
 [license-link]: https://opensource.org/licenses/Apache-2.0
 [platform-badge]: https://img.shields.io/static/v1.svg?label=Platform&message=javascript&color=lightgrey
 
-<img src="https://cdn.jsdelivr.net/gh/TankerHQ/sdk-js@v1.10.1/src/public/tanker.png" alt="Tanker logo" width="180" />
+<a href="#readme"><img src="https://tanker.io/images/github-logo.png" alt="Tanker logo" width="180" /></a>
 
 [![License][license-badge]][license-link]
 ![Platform][platform-badge]
