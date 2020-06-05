@@ -12,13 +12,7 @@ GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
 
 
 def check():
-    env = os.environ.copy()
-    config = ci.tanker_configs.load("dev")
-    env["TANKER_TOKEN"] = config["idToken"]
-    env["TANKER_API_URL"] = config["url"]
-
     Path("src/config.dev.js").copy("src/config.js")
-
     ci.run("yarn")
     with ci.run_in_background("yarn", "start"):
         # fmt: off
@@ -27,7 +21,6 @@ def check():
             "--verbose",
             "--capture=no",
             "--headless",
-            env=env,
         )
         # fmt: on
 

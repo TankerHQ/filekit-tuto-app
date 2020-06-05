@@ -8,9 +8,9 @@ import selenium.webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 
-from tankersdk import Admin
+import tankeradminsdk
 
-APP_ID = "TqegH/6vb8hC4g9p9pgMmjdpcKxx12Y+KrC7xX7PQ1A="
+APP_ID = "45B0MVMUk44n8Oubw5lY6fy3VugaXC2/ehRUJ4FpELQ="
 
 DEFAULT_TIMEOUT = 30
 
@@ -122,9 +122,18 @@ class WebClient:
         self.driver.quit()
 
 
-@pytest.fixture
-def admin():
-    return Admin(url=os.environ["TANKER_API_URL"], token=os.environ["TANKER_TOKEN"])
+def get_verification_code(email: str) -> str:
+    admin = tankeradminsdk.Admin(
+        url=os.environ["TANKER_ADMIND_URL"],
+        id_token=os.environ["TANKER_ID_TOKEN"],
+    )
+    auth_token = admin.get_app(APP_ID)["auth_token"]
+    return tankeradminsdk.get_verification_code(
+        url=os.environ["TANKER_TRUSTCHAIND_URL"],
+        app_id=APP_ID,
+        auth_token=auth_token,
+        email=email,
+    )
 
 
 @pytest.fixture
@@ -143,7 +152,7 @@ def client(request, download_dir):
     client.quit()
 
 
-def test_upload_download(tmp_path, download_dir, admin, client):
+def test_upload_download(tmp_path, download_dir, client):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
@@ -158,7 +167,7 @@ def test_upload_download(tmp_path, download_dir, admin, client):
     link = client.get_download_link()
     client.driver.get(link)
     assert client.verification_field
-    verification_code = admin.get_verification_code(APP_ID, email)
+    verification_code = get_verification_code(email)
     client.type_verification_code(verification_code)
     client.exit_verification()
     client.exit_download()
@@ -167,7 +176,7 @@ def test_upload_download(tmp_path, download_dir, admin, client):
     assert downloaded_file_path.text() == random_text
 
 
-def test_share_to_user_twice(tmpdir, download_dir, admin, client):
+def test_share_to_user_twice(tmpdir, download_dir, client):
     faker = Faker()
     email = faker.email()
     file_name = "test.txt"
@@ -183,7 +192,7 @@ def test_share_to_user_twice(tmpdir, download_dir, admin, client):
     link = client.get_download_link()
     client.driver.get(link)
     assert client.verification_field
-    verification_code = admin.get_verification_code(APP_ID, email)
+    verification_code = get_verification_code(email)
     client.type_verification_code(verification_code)
     client.exit_verification()
     client.exit_download()

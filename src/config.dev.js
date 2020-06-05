@@ -1,4 +1,4 @@
-export const appId = 'TqegH/6vb8hC4g9p9pgMmjdpcKxx12Y+KrC7xX7PQ1A=';
+export const appId = '45B0MVMUk44n8Oubw5lY6fy3VugaXC2/ehRUJ4FpELQ=';
 export const tankerApiUrl = 'https://dev-api.tanker.io';
 export const fakeAuthApiUrl = 'https://dev-fakeauth.tanker.io';
 export const appUrl = 'http://127.0.0.1:3000';
