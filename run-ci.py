@@ -5,7 +5,6 @@ import sys
 from path import Path
 
 import ci
-import ci.tanker_configs
 import ci.git
 
 GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
