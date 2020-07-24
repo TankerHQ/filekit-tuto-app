@@ -4,18 +4,18 @@ import sys
 
 from path import Path
 
-import ci
-import ci.git
+import tankerci
+import tankerci.git
 
 GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
 
 
 def check():
     Path("src/config.dev.js").copy("src/config.js")
-    ci.run("yarn")
-    with ci.run_in_background("yarn", "start"):
+    tankerci.run("yarn")
+    with tankerci.run_in_background("yarn", "start"):
         # fmt: off
-        ci.run(
+        tankerci.run(
             "poetry", "run", "pytest",
             "--verbose",
             "--capture=no",
@@ -27,16 +27,16 @@ def check():
 def deploy():
     Path("src/config.prod.js").copy("src/config.js")
 
-    ci.run("yarn")
-    ci.run("yarn", "build")
+    tankerci.run("yarn")
+    tankerci.run("yarn", "build")
 
     commit_sha = os.environ["CI_COMMIT_SHA"]
     message = f"Deploy {commit_sha}"
     # Ensure 'github' remote exists
-    ci.run("git", "remote", "remove", "github", check=False)
-    ci.run("git", "remote", "add", "github", GITHUB_URL)
+    tankerci.run("git", "remote", "remove", "github", check=False)
+    tankerci.run("git", "remote", "add", "github", GITHUB_URL)
     # fmt: off
-    ci.run(
+    tankerci.run(
         "ghp-import",
         "--message", message,
         "--remote", "github",
@@ -47,7 +47,7 @@ def deploy():
     )
     # fmt:on
 
-    ci.git.mirror(github_url=GITHUB_URL)
+    tankerci.git.mirror(github_url=GITHUB_URL)
 
 
 def main():
