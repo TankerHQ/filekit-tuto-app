@@ -49,7 +49,7 @@ class App extends React.Component {
       <>
         <header>
           This app uses FileKit to encrypt and store files.<br/>
-          Follow <a href="https://docs.tanker.io/filekit/latest/tutorials/file-transfer/">our tutorial</a> to build your app.
+          Follow <a href="https://docs.tanker.io/latest/tutorials/file-transfer/">our tutorial</a> to build your app.
         </header>
         <section>
           {!ready ? (
