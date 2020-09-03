@@ -53,4 +53,4 @@ Done! The application should now be reachable at the `http://127.0.0.1:3000` URL
 
 # Documentation
 
-Learn more about the tutorial application and Tanker FileKit in the [FileKit documentation](https://docs.tanker.io/filekit/latest).
+Learn more about the tutorial application and Tanker FileKit in the [FileKit documentation](https://docs.tanker.io/latest/tutorials/file-transfer/).
