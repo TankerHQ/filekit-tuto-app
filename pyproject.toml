@@ -13,11 +13,7 @@ ghp-import = "^0.5.5"
 path = "^13.1.0"
 pytest = "^5.3.5"
 selenium = "^3.141.0"
-tankeradminsdk = "^0.2.0"
-
-[[tool.poetry.source]]
-name = "tanker.local"
-url = "http://tanker.local:8181"
+tankeradminsdk = "^0.2.1"
 
 [[tool.poetry.source]]
 name = "gitlab"
