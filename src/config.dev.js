@@ -3,4 +3,6 @@ export const tankerApiUrl = 'https://dev-api.tanker.io';
 export const fakeAuthApiUrl = 'https://dev-fakeauth.tanker.io';
 export const appUrl = 'http://127.0.0.1:3000';
 
-export default { appId, tankerApiUrl, fakeAuthApiUrl, appUrl };
+const config = { appId, tankerApiUrl, fakeAuthApiUrl, appUrl };
+
+export default config;
