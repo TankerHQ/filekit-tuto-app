@@ -2,7 +2,7 @@ import os
 import random
 
 from faker import Faker
-from path import Path
+from pathlib import Path
 import pytest
 import selenium.webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -26,7 +26,7 @@ class WebClient:
             options.add_argument("--disable-translate")
         else:
             options.add_experimental_option(
-                "prefs", {"download.default_directory": download_dir}
+                "prefs", {"download.default_directory": str(download_dir)}
             )
         self.driver = selenium.webdriver.Chrome(options=options)
         self.to_home_page()
@@ -38,7 +38,7 @@ class WebClient:
             )
             params = {
                 "cmd": "Page.setDownloadBehavior",
-                "params": {"behavior": "allow", "downloadPath": download_dir},
+                "params": {"behavior": "allow", "downloadPath": str(download_dir)},
             }
             self.driver.execute("send_command", params)
 
@@ -102,7 +102,7 @@ class WebClient:
         self.type_text(self.email_field, email)
 
     def set_file(self, file_path):
-        self.type_text(self.file_field, file_path)
+        self.type_text(self.file_field, str(file_path))
 
     def upload(self):
         self.upload_button.click()
@@ -145,7 +145,7 @@ def download_dir(tmpdir):
 
 @pytest.fixture
 def client(request, download_dir):
-    download_dir.makedirs_p()
+    download_dir.mkdir(parents=True, exist_ok=True)
     client = WebClient(
         download_dir=download_dir, headless=request.config.getoption("headless")
     )
@@ -163,7 +163,7 @@ def test_upload_download(tmp_path, download_dir, client):
     downloaded_file_path = download_dir / file_name
 
     client.set_email(email)
-    client.set_file(str(file_path))
+    client.set_file(file_path)
     client.upload()
     link = client.get_download_link()
     client.driver.get(link)
@@ -174,7 +174,7 @@ def test_upload_download(tmp_path, download_dir, client):
     client.exit_download()
 
     assert downloaded_file_path.exists()
-    assert downloaded_file_path.text() == random_text
+    assert downloaded_file_path.read_text() == random_text
 
 
 def test_share_to_user_twice(tmpdir, download_dir, client):
@@ -199,9 +199,9 @@ def test_share_to_user_twice(tmpdir, download_dir, client):
     client.exit_download()
 
     assert downloaded_file_path.exists()
-    assert downloaded_file_path.text() == random_text
+    assert downloaded_file_path.read_text() == random_text
 
-    downloaded_file_path.remove()
+    downloaded_file_path.unlink()
 
     client.to_home_page()
     client.set_email(email)
@@ -213,4 +213,4 @@ def test_share_to_user_twice(tmpdir, download_dir, client):
     client.exit_download()
 
     assert downloaded_file_path.exists()
-    assert downloaded_file_path.text() == random_text
+    assert downloaded_file_path.read_text() == random_text
