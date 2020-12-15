@@ -74,7 +74,8 @@ class WebClient:
     def file_field(self):
         file_id = "upload-field"
         self.driver.execute_script(
-            f"document.getElementById('{file_id}').style.display='block';")
+            f"document.getElementById('{file_id}').style.display='block';"
+        )
         return self.wait_for_element(file_id)
 
     @property
