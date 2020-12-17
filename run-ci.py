@@ -1,8 +1,7 @@
 import argparse
 import os
+import shutil
 import sys
-
-from path import Path
 
 import tankerci
 import tankerci.git
@@ -11,7 +10,7 @@ GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
 
 
 def check():
-    Path("src/config.dev.js").copy("src/config.js")
+    shutil.copy("src/config.dev.js", "src/config.js")
     tankerci.run("yarn")
     with tankerci.run_in_background("yarn", "start"):
         # fmt: off
@@ -25,7 +24,7 @@ def check():
 
 
 def deploy():
-    Path("src/config.prod.js").copy("src/config.js")
+    shutil.copy("src/config.prod.js", "src/config.js")
 
     tankerci.run("yarn")
     tankerci.run("yarn", "build")
