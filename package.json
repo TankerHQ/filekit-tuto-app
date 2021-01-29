@@ -4,8 +4,8 @@
   "license": "Apache-2.0",
   "repository": "git@github.com:TankerHQ/filekit-tuto-app",
   "dependencies": {
-    "@tanker/fake-authentication": "2.7.0",
-    "@tanker/filekit": "2.7.0",
+    "@tanker/fake-authentication": "2.8.0",
+    "@tanker/filekit": "2.8.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1"
