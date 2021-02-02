@@ -1,3 +1,5 @@
+image: registry.gitlab.com/tankerhq/docker/node:latest
+
 stages:
   - check
   - deploy
