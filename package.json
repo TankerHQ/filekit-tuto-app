@@ -1,36 +1,36 @@
 {
-  "name": "tanker-filekit-tuto",
-  "version": "0.1.0",
-  "license": "Apache-2.0",
-  "repository": "git@github.com:TankerHQ/filekit-tuto-app",
-  "dependencies": {
-    "@tanker/fake-authentication": "2.8.0",
-    "@tanker/filekit": "2.8.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1"
-  },
-  "homepage": "https://tankerhq.github.io/filekit-tuto-app",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version",
       "last 1 edge version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
-  }
+  },
+  "dependencies": {
+    "@tanker/fake-authentication": "2.9.1",
+    "@tanker/filekit": "2.9.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "homepage": "https://tankerhq.github.io/filekit-tuto-app",
+  "license": "Apache-2.0",
+  "name": "tanker-filekit-tuto",
+  "repository": "git@github.com:TankerHQ/filekit-tuto-app",
+  "scripts": {
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "version": "0.1.0"
 }
