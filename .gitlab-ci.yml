@@ -1,25 +1,29 @@
+include:
+  project: TankerHQ/gitlab-ci-files
+  file: /cache.yml
+  ref: 428eae8953297125aff965e14d23b7c657d515e3
+
 default:
   image: registry.gitlab.com/tankerhq/docker/node:latest
   tags:
     - linux
-    - tanker
 
 stages:
   - check
   - deploy
 
 check:
+  extends: .python-yarn-cache
   stage: check
   script:
     - poetry install
     - poetry run python run-ci.py check
-  tags: [linux]
 
 deploy:
+  extends: .python-yarn-cache
   stage: deploy
   only:
     - master
   script:
     - poetry install
     - poetry run python run-ci.py deploy
-  tags: [linux]
