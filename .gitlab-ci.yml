@@ -27,3 +27,6 @@ deploy:
   script:
     - poetry install
     - poetry run python run-ci.py deploy
+  tags:
+    - linux
+    - tanker
