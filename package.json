@@ -26,6 +26,9 @@
   "license": "Apache-2.0",
   "name": "tanker-filekit-tuto",
   "repository": "git@github.com:TankerHQ/filekit-tuto-app",
+  "resolutions": {
+    "normalize-url": "^4.5.1"
+  },
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
