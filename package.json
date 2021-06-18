@@ -13,8 +13,8 @@
     ]
   },
   "dependencies": {
-    "@tanker/fake-authentication": "2.13.0",
-    "@tanker/filekit": "2.13.0",
+    "@tanker/fake-authentication": "2.15.0",
+    "@tanker/filekit": "2.15.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3"
@@ -26,6 +26,9 @@
   "license": "Apache-2.0",
   "name": "tanker-filekit-tuto",
   "repository": "git@github.com:TankerHQ/filekit-tuto-app",
+  "resolutions": {
+    "normalize-url": "^4.5.1"
+  },
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
