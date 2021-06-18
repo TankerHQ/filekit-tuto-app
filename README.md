@@ -24,7 +24,7 @@ This repository features an example application using Tanker FileKit.
 Check your [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/docs/install) versions, and upgrade if needed:
 
 ```bash
-node -v  # >= 10   (supported version)
+node -v  # >= 12   (supported version)
 yarn -v  # >= 1.0  (workspaces support)
 ```
 
