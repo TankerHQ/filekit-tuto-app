@@ -4,7 +4,6 @@ import shutil
 import sys
 
 import tankerci
-import tankerci.git
 
 GITHUB_URL = "git@github.com:TankerHQ/filekit-tuto-app"
 
@@ -45,8 +44,6 @@ def deploy():
         "build/",
     )
     # fmt:on
-
-    tankerci.git.mirror(github_url=GITHUB_URL)
 
 
 def main():
