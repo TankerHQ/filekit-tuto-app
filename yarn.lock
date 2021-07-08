@@ -1669,176 +1669,166 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@tanker/client-browser@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/client-browser/-/client-browser-2.15.0.tgz#3a74ce7e1ebebbe551f22d5bb9c70e5d18dcef66"
-  integrity sha512-UaehIpoDorlkJmw4Bmi7cjQG8JPK7yM3mBdm+HOu57V8mtvxRr6JoPPSdTyvJX8q06zqP5dAtqrCyglMj17Fwg==
+"@tanker/client-browser@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/client-browser/-/client-browser-2.18.0.tgz#e9474a31b8c0d43f66b2469cdb27d041aac850e2"
+  integrity sha512-VSseo649kPF5oBKKurOwR0WjybjlY08JdLh15JId1lcuLDStuZfNmkQqZPdNgM8PAp0ztybDXbQsvYbX3kgCdQ==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/core" "2.15.0"
-    "@tanker/datastore-dexie-browser" "2.15.0"
+    "@tanker/core" "2.18.0"
+    "@tanker/datastore-dexie-browser" "2.18.0"
 
-"@tanker/core@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/core/-/core-2.15.0.tgz#2ffa0d330203390532f2b7da5a2b2dcd3ae4e298"
-  integrity sha512-wAmMo+Sq2C41W9v3rqnVFjo5bs7O09PYLtMODrYejN0Wt56xAQprv2vVIrUc/1Wl/L02c/L+kp3/z/96TNjGew==
+"@tanker/core@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/core/-/core-2.18.0.tgz#b03a3018381dc7465075a92e6fc517ff44ff8b43"
+  integrity sha512-FY97hmK0wzKtv+9bXBd9M2G0yXohcUGC0GfyjwEoR22Z7URJfm9kT1XH1fWFwqXqTC3HDQgZDVvefDYU2gQX8w==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/crypto" "2.15.0"
-    "@tanker/datastore-base" "2.15.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/file-ponyfill" "2.15.0"
-    "@tanker/global-this" "2.15.0"
-    "@tanker/http-utils" "2.15.0"
-    "@tanker/identity" "2.15.0"
-    "@tanker/stream-base" "2.15.0"
-    "@tanker/stream-cloud-storage" "2.15.0"
-    "@tanker/types" "2.15.0"
+    "@tanker/crypto" "2.18.0"
+    "@tanker/datastore-base" "2.18.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/file-ponyfill" "2.18.0"
+    "@tanker/global-this" "2.18.0"
+    "@tanker/http-utils" "2.18.0"
+    "@tanker/stream-base" "2.18.0"
+    "@tanker/stream-cloud-storage" "2.18.0"
+    "@tanker/types" "2.18.0"
     varint "^6.0.0"
 
-"@tanker/crypto@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/crypto/-/crypto-2.15.0.tgz#51259ff374a3ea07c0fe4bea304d85e5feede097"
-  integrity sha512-di1+HY3/hwd1drmV2ELsTCovHtIsn/Bhzl8hv5N4vI1AWuhlhurtpqrxZZYz3lhqHk5dh33mmtrW+8un/He/xQ==
+"@tanker/crypto@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/crypto/-/crypto-2.18.0.tgz#aa07a534add48461748e95aa467e478c9a55b91e"
+  integrity sha512-xguSPPHZOtbDLvsAW2pLJTE3XE4rckaZI4obaLXNhstPKFrXdwk4cuzpOKx9oLQtWmsKobEO4zpCSbVs0OA3eg==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/errors" "2.15.0"
+    "@tanker/errors" "2.18.0"
     libsodium-wrappers "^0.7.9"
     varint "^6.0.0"
 
-"@tanker/datastore-base@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/datastore-base/-/datastore-base-2.15.0.tgz#7898ef8c1c86948afde3ceb7d785413e671cf79c"
-  integrity sha512-TmKMw5KOCR3XGfzk0q0jGqlWMUYnY5wJhYK3W6YDbtZbPHpIS1Ltc5pTd+ztpn+h83Kox/zkUCn3DuWSgJixZw==
+"@tanker/datastore-base@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/datastore-base/-/datastore-base-2.18.0.tgz#fa9a005aa0c2822c0c5840ae91ec5e00c238cfcb"
+  integrity sha512-4x3iK728cOxJ1GVF4VGTOksnegABmQVGsUrmDarCehN+SkCJpbPD56LTzVbEN2N3Lj3H3w/SAasRok3H9Wuekw==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/crypto" "2.15.0"
+    "@tanker/crypto" "2.18.0"
 
-"@tanker/datastore-dexie-base@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/datastore-dexie-base/-/datastore-dexie-base-2.15.0.tgz#9b54698a7e24b36f37087fae87c3e5ac60d9bf73"
-  integrity sha512-ANZDB+EZvSqTkz9a6a/CzGP+nlPvzjLYOUN5NHQVp4wss/rANB88FsoXgcQxD/R0Ot28WSFa2DJTMAxbrPGw7Q==
+"@tanker/datastore-dexie-base@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/datastore-dexie-base/-/datastore-dexie-base-2.18.0.tgz#7e3d2a935c0ee5596447b8795a9f651798a8d41b"
+  integrity sha512-AOfCOkWCbTVMkeHMLuqdJjPXYfSdgana/yxMMKXST7R6V9WVsiqsrQkmOPjRv5Li1Xv+C7KQjwjI/oS+N/Cb2g==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/datastore-base" "2.15.0"
+    "@tanker/datastore-base" "2.18.0"
 
-"@tanker/datastore-dexie-browser@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/datastore-dexie-browser/-/datastore-dexie-browser-2.15.0.tgz#4c7823de6f30308b005563cd7ddc6639ebeebf71"
-  integrity sha512-FeU0Ov2YTYOgU+NbExe7c3Q1eBBzXFOBzQXuHqfKWTrFZJgHzPKZ3U3qbo3eUULaXk1k7eLtZ79y4tMTkwguEA==
+"@tanker/datastore-dexie-browser@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/datastore-dexie-browser/-/datastore-dexie-browser-2.18.0.tgz#d59a223e006780a74c5b1e8a57cefb6673df7bc5"
+  integrity sha512-r9mNKGrEhz3wE8Fwjo/mdePCu/9kr7eirBI93POzZWwRd53hVfcsRSewvBV+kjqI7+HGRq+wGS0fyJXvxYiNnw==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/datastore-dexie-base" "2.15.0"
+    "@tanker/datastore-dexie-base" "2.18.0"
     dexie "^3.0.3"
 
-"@tanker/errors@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/errors/-/errors-2.15.0.tgz#43835e288fd2a26bbed655e949f59d8fa978a158"
-  integrity sha512-dRhfuCJdF5dgURuJnmzeINHlg0Is3FWMlKnnO208/g6T9YLl8jBGQJbn7OjB1CbWpzLciLvp/s93W/PsOQ7bbA==
+"@tanker/errors@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/errors/-/errors-2.18.0.tgz#81a094b638d47a80d85e266a5aa469c5879059b6"
+  integrity sha512-6YvQblbWUAY1DkLeW008JFJb+fkVJx25fsIyvYLQWUu0j1LmiqyKkjPL02Adr3PIHfVaw3OlpCt52MBEAhAkSg==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
 
-"@tanker/fake-authentication@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/fake-authentication/-/fake-authentication-2.15.0.tgz#5b549d06a8c22fb930e52092d581775e81a2cc5c"
-  integrity sha512-VrXoLUs8tMhHQ4jZ9ikG2QnbMazs3+PSzqvf0OZd8NAf5TYm39wx9QuaSKX5RoAl7BJjRbaqozKtk+bSe4WwTQ==
+"@tanker/fake-authentication@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/fake-authentication/-/fake-authentication-2.18.0.tgz#28f9d5c6bb8ad23f430a8b1fb18d54f8f9a7077a"
+  integrity sha512-tL9WS0fxHTSCG+2FhSmTtrlo7kAoeH/fBDqh/Hn2b7k0eDm8dTEbkfHRPLyOYnbou7dVbvPey7Df+2FDIPLhVQ==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/http-utils" "2.15.0"
+    "@tanker/http-utils" "2.18.0"
 
-"@tanker/file-ponyfill@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/file-ponyfill/-/file-ponyfill-2.15.0.tgz#a0c4476a380f5ba4d6db611902dbd44cb9cfda52"
-  integrity sha512-unArpgQiptGZOIVuEKIDMmECF045nJroxhQgbfywJNG/v4MoBmxB7l3UNojlMVXY4ILehHxCDjzDVnvvvdg5SQ==
+"@tanker/file-ponyfill@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/file-ponyfill/-/file-ponyfill-2.18.0.tgz#c255c4e0ef7300882a9ed95cd4525bd5b49857c5"
+  integrity sha512-juDEpEQ1cZ2mWJmhe1R0S615JsvOhz5/kftulmYKe+JXMILRLtGmffcU0qsqNMFyItZRiasmxvlPi+wVK9199w==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/global-this" "2.15.0"
+    "@tanker/global-this" "2.18.0"
 
-"@tanker/file-reader@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/file-reader/-/file-reader-2.15.0.tgz#d895165e7649381596f241b3962e68abe5582a1f"
-  integrity sha512-ZRIygY9YXEjh0SzL90dwGhhBjQs8HeXqeKOCXj1WP0+iR7b6fTsGgoDieo1P/bSOkEDyC1gRFL+5drdIpyKUTA==
+"@tanker/file-reader@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/file-reader/-/file-reader-2.18.0.tgz#1e491549dab073d8437c7ae92ddebfabaae0fad7"
+  integrity sha512-T7U1YFHhb8uaHiXx8IZo3mM4NuQ0Oj9sOb1ABlo/q7SV1NGYKfyh2zrLrALxAgfQy6hDZRMtZz3OFjU+4ISHjA==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/global-this" "2.15.0"
+    "@tanker/global-this" "2.18.0"
 
-"@tanker/filekit@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/filekit/-/filekit-2.15.0.tgz#30174265ff824691375e7e52a7afbafe4e3a615f"
-  integrity sha512-DkAr0Gmvl1h/74BsTOmR6zlgFtOk27CBB5Rue24K/+d3nqMOPYvzVbcAEe74LIcq7i5BXx5LFcwVVA785Ia42g==
+"@tanker/filekit@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/filekit/-/filekit-2.18.0.tgz#5e662909c9c6a092379b6eb6ef4ff564decda213"
+  integrity sha512-tub3755SBT5HggiY7nRk3/bWtUgCbpzgIrIzsuC7WtRR6nmxst6cgkC4iMpBl1pVis+KRcJne6YBhoSjVkap8g==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/client-browser" "2.15.0"
-    "@tanker/verification-ui" "2.15.0"
+    "@tanker/client-browser" "2.18.0"
+    "@tanker/verification-ui" "2.18.0"
     file-saver "^2.0.2"
 
-"@tanker/global-this@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/global-this/-/global-this-2.15.0.tgz#76f3409efa0b4e10a011ca487b158a52ccbcedc3"
-  integrity sha512-/DX5Qkc/px52wm02lXKjpI/Srpi7UnUCjWSdMP62nVS16hfxK1cdcLe1G41J+Nx/EeC6dgXqo+Wdb1M2sXSrRQ==
+"@tanker/global-this@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/global-this/-/global-this-2.18.0.tgz#24365280ab8b6ec57372377f11eb668064a076ce"
+  integrity sha512-cMkNzEe0z9vF5go7fkWZOSHl6lIgvxW6HpvRWspRF5hEOYJtplgxyAQg6LGqBXmpvC/F8tEi7zSQCBMYeGdnqQ==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
 
-"@tanker/http-utils@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/http-utils/-/http-utils-2.15.0.tgz#6d008f64b193fc48991071149694968cbe512fa5"
-  integrity sha512-2Snr0M3A2knKJr75k4FTehef17pVqt8E2odlJCFbZGW8K3R13z5Dt0QYr3xs+DoZIyj/rg6+pdSEKBzGYDlL3A==
+"@tanker/http-utils@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/http-utils/-/http-utils-2.18.0.tgz#120432bd4bcdd445cfcf96151d76842d54371ffa"
+  integrity sha512-3T4jVz0VNzaGD034wncoumkWRe8gM9gc4zQ31XeJOyvpkzphuPF6zHKhaC7F/vBX8JC7ER21YidJqrzWfOcACw==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/global-this" "2.15.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/global-this" "2.18.0"
     fetch-ponyfill "^7.0.0"
 
-"@tanker/identity@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/identity/-/identity-2.15.0.tgz#b2afb170731307aaa765db0fd1c8ab890a445ed7"
-  integrity sha512-/wL0exG64c4FguKymrlcpVlARLYKUNouM5JWaiiN0C4QBAweImLe+5Wqaa/hwPKXzJlpp+mqUnPuSFmrFMUGBw==
+"@tanker/stream-base@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/stream-base/-/stream-base-2.18.0.tgz#075f1544cb6ed841fa59c0eebe9f3ec62274b407"
+  integrity sha512-GXJexEuKEtRWIgRIgTysG39JFIMOlc+Cc2MajHeCosoSyLxWHVY+yZxlWc/axULnKrlzN8toK1/Fy6HGJDiETA==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/crypto" "2.15.0"
-    "@tanker/errors" "2.15.0"
-
-"@tanker/stream-base@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/stream-base/-/stream-base-2.15.0.tgz#46a2493e873f383c5fb8312ac26f64b98e77ae87"
-  integrity sha512-nAqXAumaQNABru2N2UmFRey3bcLMMLo7xkyzIeY/MTxoKOWkCAt+hF+FeeioETCkvcQhy+vct5+rjo72iHAhvQ==
-  dependencies:
-    "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/file-reader" "2.15.0"
-    "@tanker/types" "2.15.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/file-reader" "2.18.0"
+    "@tanker/types" "2.18.0"
     readable-stream "^3.6.0"
 
-"@tanker/stream-cloud-storage@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/stream-cloud-storage/-/stream-cloud-storage-2.15.0.tgz#3f49d1271c66707a314302699c5a20132f175265"
-  integrity sha512-ZeBA8kCSRZFnw91l3cs61+/dFaGusvpb78XTGLB5fkqwtQ0FOMBBzeZSmKACMi0Mpnr4tSsHbm7Yb6AFp6B+qA==
+"@tanker/stream-cloud-storage@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/stream-cloud-storage/-/stream-cloud-storage-2.18.0.tgz#129ae4951413263819369097cc57b90d6b35a3be"
+  integrity sha512-xIBu6Dfj3d2J8cDuv197GCHhd2BA4UtPsRdndAz9ub4YVJxi+dzCIPqV82jYsYbzcsYDeJ0wxehk9kkg/zyVpA==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/http-utils" "2.15.0"
-    "@tanker/stream-base" "2.15.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/http-utils" "2.18.0"
+    "@tanker/stream-base" "2.18.0"
 
-"@tanker/types@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/types/-/types-2.15.0.tgz#598cb9000407ef6a2c38cdb6e0d7cf3c5da6d7b7"
-  integrity sha512-7bE+o7i9fTojI+9esVDD5kXDqf78thIAH5r6KTDlYeFG+F64ehkn0KPyzxBF6y4ntvyiL1oKKCRYgfL++12DTg==
+"@tanker/types@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/types/-/types-2.18.0.tgz#1a6a27d15e0db26fd903f8f1d2df3e5afe829683"
+  integrity sha512-YkTOeEtBvNJYcYlBraWYzJR7sNyAEv3X30pdlLACxgFA3M+S2MpCUp0o5KjEOZxPEdApQYX+P2GH4SVnaJF/CQ==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/crypto" "2.15.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/file-ponyfill" "2.15.0"
-    "@tanker/file-reader" "2.15.0"
-    "@tanker/global-this" "2.15.0"
+    "@tanker/crypto" "2.18.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/file-ponyfill" "2.18.0"
+    "@tanker/file-reader" "2.18.0"
+    "@tanker/global-this" "2.18.0"
 
-"@tanker/verification-ui@2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@tanker/verification-ui/-/verification-ui-2.15.0.tgz#dd47d053e0d03483faf472ec054ecf9c34bd8f2c"
-  integrity sha512-W++X6vtHKPC+hTUg3qCr+01ZEQpcjyJdET+heb34HFa9oqWV2Lpjsg58H0vRCZ9My+uxEQvlxQ19Pnt0+ApjAQ==
+"@tanker/verification-ui@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@tanker/verification-ui/-/verification-ui-2.18.0.tgz#6e637e75717cba81cb5faa2e032aa4fa4a059178"
+  integrity sha512-UWwvY79s/Sdi8gXdlVX1KGNk+bCTymBbun7ezb6GIIv0fjFoHw9JkKB+aGd1UbN05lZ7+bm3PQ/CUha54W2FSg==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.0"
-    "@tanker/errors" "2.15.0"
-    "@tanker/http-utils" "2.15.0"
+    "@tanker/errors" "2.18.0"
+    "@tanker/http-utils" "2.18.0"
     dumb-reducer "^2.0.3"
     polished "^4.1.0"
     react-hot-loader "^4.13.0"
