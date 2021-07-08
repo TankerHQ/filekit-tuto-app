@@ -13,8 +13,8 @@
     ]
   },
   "dependencies": {
-    "@tanker/fake-authentication": "2.15.0",
-    "@tanker/filekit": "2.15.0",
+    "@tanker/fake-authentication": "2.18.0",
+    "@tanker/filekit": "2.18.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3"
