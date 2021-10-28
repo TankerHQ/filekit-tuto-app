@@ -1,7 +1,8 @@
 import React from 'react';
 
-import FileKit from '@tanker/filekit';
+import { Tanker } from '@tanker/client-browser';
 import FakeAuthentication from '@tanker/fake-authentication';
+import VerificationUI from '@tanker/verification-ui';
 
 import Download from './Download';
 import Upload from './Upload';
@@ -13,26 +14,50 @@ class App extends React.Component {
     super(props);
 
     const { appId, tankerApiUrl, fakeAuthApiUrl } = config;
-    const fileKit = new FileKit({ appId, url: tankerApiUrl });
-    const fakeAuth = new FakeAuthentication({ appId, url: fakeAuthApiUrl });
+    this.tanker = new Tanker({ appId, url: tankerApiUrl });
+    this.verificationUI = new VerificationUI(this.tanker);
+    this.fakeAuth = new FakeAuthentication({ appId, url: fakeAuthApiUrl });
 
     const urlParams = new URLSearchParams(window.location.search);
     const fileId = urlParams.get('fileId');
     const email = urlParams.get('email');
 
-    this.state = { fakeAuth, fileKit, fileId, email, ready: false };
+    this.state = { fileId, email, ready: false };
+  }
+
+  async startDisposableSession() {
+    const { identity } = await this.fakeAuth.getIdentity();
+    const status = await this.tanker.start(identity);
+
+    switch (status) {
+      case Tanker.statuses.IDENTITY_REGISTRATION_NEEDED: {
+        const genVerificationKey = await this.tanker.generateVerificationKey();
+        await this.tanker.registerIdentity({ verificationKey: genVerificationKey });
+        return;
+      }
+      case Tanker.statuses.IDENTITY_VERIFICATION_NEEDED: {
+        throw new Error('This identity has already been used, create a new one.');
+      }
+      // When hitting back or forward on the browser you can start a disposable
+      // session with the same identity twice because the browser is caching
+      // the xhr request to fake-auth (or another identity server)
+      case Tanker.statuses.READY: {
+        return;
+      }
+      default:
+        throw new Error(`Assertion error: unexpected status ${status}`);
+    }
   }
 
   async componentDidMount() {
     const { email } = this.state;
 
     if (email) {
-      const privateIdentity = await this.state.fakeAuth.getIdentity(email);
-      await this.state.fileKit.start(email, privateIdentity);
-      await this.state.fakeAuth.setIdentityRegistered(email);
+      const { identity, provisionalIdentity } = await this.fakeAuth.getIdentity(email);
+      await this.verificationUI.start(email, identity, provisionalIdentity);
+      await this.fakeAuth.setIdentityRegistered(email);
     } else {
-      const privateIdentity = await this.state.fakeAuth.getIdentity();
-      await this.state.fileKit.startDisposableSession(privateIdentity);
+      await this.startDisposableSession();
     }
 
     this.setState({ ready: true });
@@ -48,7 +73,7 @@ class App extends React.Component {
     return (
       <>
         <header>
-          This app uses FileKit to encrypt and store files.<br/>
+          This app uses the Core SDK to encrypt and store files.<br/>
           Follow <a href="https://docs.tanker.io/latest/tutorials/file-transfer/">our tutorial</a> to build your app.
         </header>
         <section>
@@ -56,9 +81,9 @@ class App extends React.Component {
             <p>Loading...</p>
           ) : (
             fileId ? (
-              <Download fileKit={this.state.fileKit} fileId={fileId} doneCb={this.downloadDone} />
+              <Download tanker={this.tanker} fileId={fileId} doneCb={this.downloadDone} />
             ) : (
-              <Upload fileKit={this.state.fileKit} fakeAuth={this.state.fakeAuth} />
+              <Upload tanker={this.tanker} fakeAuth={this.fakeAuth} />
             )
           )}
         </section>
