@@ -19,12 +19,11 @@ class Upload extends React.Component {
 
   onUpload = async (event) => {
     event.preventDefault();
-    const { fakeAuth, fileKit } = this.props;
+    const { fakeAuth, tanker } = this.props;
     const { file, recipient } = this.state;
+
     const recipientPublicIdentities = await fakeAuth.getPublicIdentities([ recipient ]);
-    this.setState({ isUploading: true });
-    const fileId = await fileKit.upload(file, { shareWithUsers: recipientPublicIdentities });
-    this.setState({ isUploading: false });
+    const fileId = await tanker.upload(file, { shareWithUsers: recipientPublicIdentities });
 
     const downloadLink = config.appUrl +
       '?fileId=' + encodeURIComponent(fileId) +
@@ -34,8 +33,7 @@ class Upload extends React.Component {
   }
 
   render() {
-    const { file, recipient, downloadLink, isUploading } = this.state;
-    const uploadReady = file && (recipient !== "");
+    const { file, recipient, downloadLink } = this.state;
 
     if (downloadLink) {
       return (
@@ -55,7 +53,9 @@ class Upload extends React.Component {
           <label htmlFor="upload-field">{file ? file.name : 'Select a file to send'}</label>
         </div>
         <input type="email" id="recipient-email-field" required placeholder="Enter the recipient email" value={this.state.recipient} onChange={e => this.updateRecipient(e)} name="recipient"/>
-        <button type="submit" id="send-button" disabled={isUploading || !uploadReady}>{isUploading ? 'Uploading...' : 'Create a secure link'}</button>
+        <button type="submit" id="send-button" disabled={!file || !recipient}>
+          Create a secure link
+        </button>
       </form>
     );
   }

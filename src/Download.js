@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { saveAs } from 'file-saver';
+
 class Download extends React.Component {
   constructor(props) {
     super(props);
@@ -8,8 +10,9 @@ class Download extends React.Component {
   }
 
   async componentDidMount() {
-    const { fileId, fileKit } = this.props;
-    await fileKit.downloadToDisk(fileId);
+    const { fileId, tanker } = this.props;
+    const file = await tanker.download(fileId);
+    saveAs(file)
     this.setState({ downloadDone: true });
   }
 
