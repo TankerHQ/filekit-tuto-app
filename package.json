@@ -13,9 +13,9 @@
     ]
   },
   "dependencies": {
-    "@tanker/client-browser": "2.23.1",
-    "@tanker/fake-authentication": "2.23.1",
-    "@tanker/verification-ui": "2.23.1",
+    "@tanker/client-browser": "2.26.0",
+    "@tanker/fake-authentication": "2.26.0",
+    "@tanker/verification-ui": "2.26.0",
     "file-saver": "^2.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
