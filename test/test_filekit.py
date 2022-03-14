@@ -125,8 +125,9 @@ class WebClient:
 
 def get_verification_code(email: str) -> str:
     admin = tankeradminsdk.Admin(
-        url=os.environ["TANKER_ADMIND_URL"],
-        id_token=os.environ["TANKER_ID_TOKEN"],
+        app_management_token=os.environ["TANKER_MANAGEMENT_API_ACCESS_TOKEN"],
+        environment_name=os.environ["TANKER_MANAGEMENT_API_DEFAULT_ENVIRONMENT_NAME"],
+        url=os.environ["TANKER_MANAGEMENT_API_URL"],
     )
     auth_token = admin.get_app(APP_ID)["auth_token"]
     return tankeradminsdk.get_verification_code(
