@@ -12,7 +12,7 @@ Faker = "^2.0.0"
 ghp-import = "^0.5.5"
 pytest = "^6.2.0"
 selenium = "^3.141.0"
-tankeradminsdk = { version = "^1.0.0", source = "gitlab" }
+tankeradminsdk = { version = "^2.0.0", source = "gitlab" }
 
 [[tool.poetry.source]]
 name = "gitlab"
